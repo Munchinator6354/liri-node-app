@@ -1,7 +1,16 @@
-var apiSelector = process.argv[2];
-var input = process.argv[3];
+require("dotenv").config();
+
+var keys = require("./keys.js");
+
+var Spotify = require('node-spotify-api');
+
+var spotify = new Spotify(keys.spotify);
 
 var axios = require("axios");
+
+var apiSelector = process.argv[2];
+
+var input = process.argv[3];
 
 
 switch (apiSelector) {
@@ -9,13 +18,13 @@ switch (apiSelector) {
         output = bandsInTownAPI(input);
         break;
 
-    // case "spotify-this-song":
-    //     output = ;
-    //     break;
+    case "spotify-this-song":
+        output = spotifyFunction(input);
+        break;
 
-    // case "movie-this":
-    //     output = ;
-    //     break;
+    case "movie-this":
+        output = omdbAPI(input);
+        break;
 
     // case "do-what-it-says":
     //     output = ;
@@ -54,11 +63,77 @@ function bandsInTownAPI(input) {
 }
 
 
+function spotifyFunction(input) {
+    console.log(input);
+    if (input === undefined) {
+        input = "The Sign"
+        }
+    
+
+    spotify.search({ type: 'track', query: input, limit: 10 }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        var songs = data.tracks.items;
+
+        for (var i = 0; i < songs.length; i++) {
+
+            var specificSongBandName = songs[i].artists[0].name;
+
+                if (specificSongBandName === "Ace of Base") {
+                    console.log(songs[i].artists[0].name);
+                    console.log(songs[i].name);
+                    console.log(songs[i].preview_url);
+                    console.log(songs[i].album.name + "\n");
+                }
+
+            console.log("================================================================")
+            console.log("Result #" + [i + 1])
+            console.log("BAND NAME: " + songs[i].artists[0].name);
+            console.log("SONG NAME: " + songs[i].name);
+            console.log("PREVIEW VIDEO: " + songs[i].preview_url);
+            console.log("ALBUM NAME: " + songs[i].album.name + "\n");
+        }
+
+        // console.log(songs[0].album.artists);
+        // console.log(songs.name);
+        // console.log(songs.preview_url);
+        // console.log(songs.album.name);
+    });
+
+}
 
 
 
+function omdbAPI(input) {
+    axios.
+        get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy")
+        .then(function (response) {
+            console.log(response);
+        })
 
+        .catch(function (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log("---------------Data---------------");
+                console.log(error.response.data);
+                console.log("---------------Status---------------");
+                console.log(error.response.status);
+                console.log("---------------Status---------------");
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
 
+}
 
 
 
@@ -84,7 +159,7 @@ function bandsInTownAPI(input) {
 
 // var dotenv = require("dotenv").config();
 // var keys = require("./keys.js");
-// var spotify = require('node-spotify-api');
+
 
 
 
