@@ -64,7 +64,7 @@ function bandsInTownAPI(input) {
 
 
 function spotifyFunction(input) {
-    console.log(input);
+    console.log("Input: " + input);
     if (input === undefined) {
         input = "The Sign"
         }
@@ -87,6 +87,16 @@ function spotifyFunction(input) {
                     console.log(songs[i].album.name + "\n");
                 }
 
+                // Trying to selectively choose the ace of base only "The Sign options"
+                // const array1 = [1, 4, 9, 16];
+
+                // pass a function to map
+                // const map1 = array1.map(x => x * 2);
+                
+                // console.log(map1);
+                // expected output: Array [2, 8, 18, 32]
+
+                
             console.log("================================================================")
             console.log("Result #" + [i + 1])
             console.log("BAND NAME: " + songs[i].artists[0].name);
