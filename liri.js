@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+
+
 var keys = require("./keys.js");
 
 var Spotify = require('node-spotify-api');
@@ -7,6 +9,8 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 
 var axios = require("axios");
+
+var fs = require("fs");
 
 var apiSelector = process.argv[2];
 
@@ -64,11 +68,11 @@ function bandsInTownAPI(input) {
 
 
 function spotifyFunction(input) {
-    console.log("Input: " + input);
+    console.log("Input Received: " + input);
     if (input === undefined) {
         input = "The Sign"
-        }
-    
+    };
+
 
     spotify.search({ type: 'track', query: input, limit: 10 }, function (err, data) {
         if (err) {
@@ -80,23 +84,23 @@ function spotifyFunction(input) {
 
             var specificSongBandName = songs[i].artists[0].name;
 
-                if (specificSongBandName === "Ace of Base") {
-                    console.log(songs[i].artists[0].name);
-                    console.log(songs[i].name);
-                    console.log(songs[i].preview_url);
-                    console.log(songs[i].album.name + "\n");
-                }
+            if (specificSongBandName === "Ace of Base") {
+                console.log(songs[i].artists[0].name);
+                console.log(songs[i].name);
+                console.log(songs[i].preview_url);
+                console.log(songs[i].album.name + "\n");
+            }
 
-                // Trying to selectively choose the ace of base only "The Sign options"
-                // const array1 = [1, 4, 9, 16];
+            // Trying to selectively choose the ace of base only "The Sign options"
+            // const array1 = [1, 4, 9, 16];
 
-                // pass a function to map
-                // const map1 = array1.map(x => x * 2);
-                
-                // console.log(map1);
-                // expected output: Array [2, 8, 18, 32]
+            // pass a function to map
+            // const map1 = array1.map(x => x * 2);
 
-                
+            // console.log(map1);
+            // expected output: Array [2, 8, 18, 32]
+
+
             console.log("================================================================")
             console.log("Result #" + [i + 1])
             console.log("BAND NAME: " + songs[i].artists[0].name);
@@ -116,10 +120,21 @@ function spotifyFunction(input) {
 
 
 function omdbAPI(input) {
-    axios.
-        get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy")
+    if (input === undefined) {
+        input = "Mr. Nobody"
+    };
+    console.log("Input Received: " + input);
+
+    axios.get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy")
         .then(function (response) {
-            console.log(response);
+            console.log("Movie Title: " + response.data.Title);
+            console.log("Movie Release Year: " + response.data.Year);
+            console.log("IMDb Rating: " + response.data.Ratings[0].Value);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[0].Value);
+            console.log("Movie Produced In: " + response.data.Country);
+            console.log("Movie Language: " + response.data.Language);
+            console.log("Movie Plot: " + response.data.Plot);
+            console.log("Prominant Actors: " + response.data.Actors); 
         })
 
         .catch(function (error) {
@@ -140,10 +155,12 @@ function omdbAPI(input) {
                 // Something happened in setting up the request that triggered an Error
                 console.log("Error", error.message);
             }
-            console.log(error.config);
+            // console.log(error.config);
         });
 
 }
+
+
 
 
 
