@@ -35,6 +35,30 @@ If no input is received it will default undefined and fill in "The Sign" in refe
 
 ![spotify-this-songw/UndefinedTheSign](./images/spotifyThisSongUndefined.gif)
 
+Now let's try to use the "movie-this" command. Essentially, you input a movie title and the OMDb information on it will be displayed including the movie title, year of release, IMDb rating, Rotten Tomatoes rating, countries it was produced in, primary language, movie plot, and primary actors.
+
+If no movie title is input, then it will perform a default seacrch for the movie "Mr. Nobody".
+
+![movie-thisw/Sharnado&Mr.Nobody](./images/movieThisSharknadoMrNobody.gif)
+
+Finally let's checkout out the "do-what-it-says" command: 
+
+
+
+
+
+
+
+
+
+
+## Technologies Used
+Javascript, Node, Bands-In-Town API, Node-Spotify-API, OMDb API, Axios, fs, dotenv, and Moment.
+
+## App Development
+This app was developed by: [Munchinator6354](https://github.com/Munchinator6354])
+
+
 
 
 
@@ -43,6 +67,6 @@ Give a high-level overview of how the app is organized
 Give start-to-finish instructions on how to run the app
 Include screenshots, gifs or videos of the app functioning
 Contain a link to a deployed version of the app
-Clearly list the technologies used in the app
-State your role in the app development
+
+
 
