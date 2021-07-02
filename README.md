@@ -56,17 +56,4 @@ Finally let's checkout out the "do-what-it-says" command:
 Javascript, Node, Bands-In-Town API, Node-Spotify-API, OMDb API, Axios, fs, dotenv, and Moment.
 
 ## App Development
-This app was developed by: [Munchinator6354](https://github.com/Munchinator6354])
-
-
-
-
-
-
-Give a high-level overview of how the app is organized
-Give start-to-finish instructions on how to run the app
-Include screenshots, gifs or videos of the app functioning
-Contain a link to a deployed version of the app
-
-
-
+This app was developed by: [Ryan Isaacson](https://github.com/Munchinator6354])
