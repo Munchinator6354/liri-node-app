@@ -41,7 +41,6 @@ If no movie title is input, then it will perform a default seacrch for the movie
 
 ![movie-thisw/Sharnado&Mr.Nobody](./images/movieThisSharknadoMrNobody.gif)
 
-Finally let's checkout out the "do-what-it-says" command: 
 
 
 
